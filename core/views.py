@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions
 from .models import AuditLog
+from .permissions import IsUniversityStaff
 from .utils import register_audit_event
 
 
@@ -14,7 +15,7 @@ class StatusAPIView(APIView):
 
 
 class DashboardAPIView(APIView):
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [IsUniversityStaff]
 
     def get(self, request):
         modules = [
